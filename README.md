@@ -1,130 +1,218 @@
-# ĐỒ ÁN CUỐI KỲ
-# MÔN HỌC: LẬP TRÌNH CHO KHOA HỌC DỮ LIỆU
-Giảng viên hướng dẫn: ThS. Phạm Trọng Nghĩa
-### NHÓM 16 ###
----
-## Mục lục
-- [A. Tổng quan về nhóm và đồ án](#phan-a)
-  - [1. Thông tin các thành viên](#thong-tin)
-  - [2. Phân công công việc và đánh giá mức độ hoàn thành](#tu-danh-gia)
-  - [3. Kế hoạch đồ án](#ke-hoach)
-- [B. Những khó khăn và bài học rút ra được khi thực hiện đồ án](#phan-b)
-- [C. Biên bản họp](#phan-c)
-  - [1. Biên bản họp lần 1](#hop-lan-1)
-  - [2. Biên bản họp lần 2](#hop-lan-2)
----
-## A. Tổng quan về nhóm và đồ án: <a id="phan-a"></a>
-### 1. Thông tin các thành viên: <a id="thong-tin"></a>
-|Họ tên                 |MSSV    |
-|-----------------------|--------|
-|Nguyễn Trần Gia        |22120083|
-|Trần Hoàng Kim Ngân    |22120224|
-|Nguyễn Phát Kim Nhung  |22120259|
+# 📊 Netflix Content Analysis Project
 
-### 2. Phân công công việc và đánh giá mức độ hoàn thành: <a id="tu-danh-gia"></a>
-|Họ tên                 |MSSV    |Phân công công việc                                   |Mức độ hoàn thành|
-|-----------------------|--------|------------------------------------------------------|-----------------|
-|Nguyễn Trần Gia        |22120083|Thu thập dữ liệu, đặt và trả lời câu hỏi              |100%             |
-|Trần Hoàng Kim Ngân    |22120224|Khám phá và tiền xử lý dữ liệu, đặt và trả lời câu hỏi|100%             |
-|Nguyễn Phát Kim Nhung  |22120259|Khám phá và tiền xử lý dữ liệu, đặt và trả lời câu hỏi|100%             |
+## 🎯 Overview
+A comprehensive data analysis project examining Netflix's content library to uncover trends, patterns, and strategic insights about the streaming platform's content evolution. This project analyzes various aspects of Netflix's catalog including content types, genres, international diversity, and creator collaboration strategies.
 
-### 3. Kế hoạch đồ án: <a id="ke-hoach"></a>
-|Thời gian thực hiện      |Công việc                                         |Người thực hiện                             |Đánh giá tiến độ |
-|-------------------------|--------------------------------------------------|--------------------------------------------|-----------------|
-|18/11/2024 - 23/11/2024  |Tìm hiểu về cách thực hiện đồ án                  |Tất cả thành viên                           |100%             |
-|24/11/2024               |Họp nhóm lần 1                                    |Tất cả thành viên                           |100%             |
-|24/11/2024 - 1/12/2024   |Thực hiện thu thập dữ liệu về tập dữ liệu đã chọn |Nguyễn Trần Gia                             |100%             |
-|24/11/2024 - 29/11/2024  |Thực hiện khám phá và tiền xử lý dữ liệu          |Trần Hoàng Kim Ngân và Nguyễn Phát Kim Nhung|100%             |
-|29/11/2024 - 9/12/2024   |Tìm hiểu, đặt và phân tích những câu hỏi          |Tất cả thành viên                           |100%             |
-|9/12/2024 - 10/12/2024   |Duyệt lại tất cả các nội dung đã thực hiện        |Tất cả thành viên                           |100%             |
-|11/12/2024               |Họp lần 2                                         |Tất cả thành viên                           |100%             |
-|11/12/2024 - 13/12/2024  |Thực hiện chỉnh sửa và hoàn thành đồ án           |Tất cả thành viên                           |100%             |
+## 📁 Project Structure
+```
+PDS_FinalProject/
+│
+├── data/
+│   ├── netflix_titles.csv              # Original dataset
+│   └── netflix_titles_cleaned.csv       # Cleaned dataset
+│
+├── data_collection/
+│   └── data_collection.ipynb            # Data collection & documentation
+│
+├── data_exploration/
+│   └── data_exploration.ipynb           # Data exploration & preprocessing
+│
+├── data_questions/
+│   ├── knhung_question1.ipynb          # Question 1: Content & genre changes
+│   ├── kngan_question2.ipynb           # Question 2: International content trends
+│   └── TGia_question3.ipynb            # Question 3: Director/cast collaboration
+│
+└── README.md                            # Project documentation
+```
 
----
-## B. Những khó khăn và cách giải quyết khó khăn khi thực hiện đồ án: <a id="phan-b"></a>
-#### 1. Thu thập dữ liệu:
-- Có nhiều trang web cung cấp nhiều dữ liệu khác nhau, khó khăn trong tìm kiếm dữ liệu phù hợp để phân tích, tìm hiểu xử lý
+## 📊 Dataset Information
 
--> *Cách xử lý:* Trang kagge có cung cấp đầy đủ thông tin giấy phép uy tín, update dữ liệu mới.
+### Source
+- **Platform**: Kaggle.
+- **Original Source**: (#Netflix Movies and TV Shows)[!https://www.kaggle.com/datasets/rahulvyasm/netflix-movies-and-tv-shows]
+- **License**: CC0: Public Domain.
+- **Size**: 8,809 records.
 
-#### 2. Khám phá và tiền xử lý dữ liệu:
-- Cột ‘duration’ không nhất quán về giá trị: vừa là số phút của phim, vừa là số phần của chương trình truyền hình.
+### Features
+The dataset contains the following columns:
+- `show_id`: Unique identifier for each title.
+- `type`:  The category of the title, which is either 'Movie' or 'TV Show'.
+- `title`: Name of the content.
+- `director`: Director(s) of the content. (Contains null values for some entries, especially TV shows where this information might not be applicable.)
+- `cast`: Cast members. (Some entries might not have this information.)
+- `country`: Country/countries of production.
+- `date_added`: Date added to Netflix.
+- `release_year`: Year of original release.
+- `rating`: Content rating (PG, TV-MA, etc.)
+- `duration`: Duration (minutes for movies, seasons for TV shows).
+- `listed_in`: Genres/categories.
+- `description`: Content description.
 
--> *Cách xử lý:* Tách làm 2 cột: ‘duration’ cho thời lượng phim, ‘season’ cho số mùa của chương trình truyền hình.
-- Sau khi tách thì tạo ra giá trị null trong 2 cột  ‘duration’ và ‘season’.
+## 🔍 Research Questions
 
--> *Cách xử lý:* Do giá trị null của mỗi cột là do khác loại, nếu điền 0 sẽ không hợp lí do nó không phải null từ mỗi cột và sẽ làm sai lệch phân bổ của dữ liệu, nên nhóm quyết định giữ null. Vì giữ null nên không ép kiểu int được mà phải ép kiểu float.
-- Giá trị null của cột ‘rating’ không thể điền trung bình hay mode do dễ làm sai thông tin liên quan đến thể loại, nội dung.
+### Question 1: Content Volume & Genre Evolution
+**Research Focus**: How have the quantity and genre distribution of Netflix content changed over the years?
 
--> *Cách xử lý:* Vì phần trăm null của cột này không nhiều, có thể tìm và điền vào rating tương ứng. Nhưng mỗi nội dung được gán nhãn khác nhau ở mỗi nước -> Thống nhất chọn rating ở Mỹ.
+**Key Analysis**:
+- Total content additions per year (Movies vs TV Shows).
+- Genre distribution trends over time.
+- Strategic shifts in content production priorities.
 
-#### 3. Trả lời câu hỏi:
-**Câu 1:** Sự thay đổi về số lượng và thể loại nội dung của Netflix qua các năm là gì?
-- Cột ‘listed_in’ bao gồm nhiều thể loại ở mỗi nội dung, không tiện để phân tích từng thể loại
-
--> *Cách xử lý:* One-hot encoding cho cột ‘listed_in’
-- Có quá nhiều thể loại đơn, khó phân tích và trực quan
-
--> *Cách xử lý:* Dựa vào đặc điểm chung để nhóm vào thành các nhóm thể loại chính
-
-**Câu 2:** Xu hướng về sự đa dạng hóa nội dung quốc tế và nội dung nội địa của Netflix là gì?
-- Cột ‘country’ là một cột đa trị, gây khó khăn trong quá trình phân tích đó là nội dung nội địa hay quốc tế
-
--> Cách xử lý: One-hot encoding cho cột ‘country’’
-- Cột ‘country’ có nhiều giá trị UNKNOWN gây khó khăn trong việc phân tích và có thể làm dữ liệu cho quá trình phân tích
-
--> *Cách xử lý:* Bỏ qua các hàng UNKNOWN do ở đây câu hỏi đặt ra là nội dung nội địa và quốc tế nên các giá trị UNKNOWN không có giá trị để phân tích. Ngoài ra các giá trị UNKNOWN cũng không chiếm số lượng quá nhiều.
-
-**Câu 3:** Netflix có đang thay đổi chiến lược hợp tác với các đạo diễn và diễn viên nổi bật theo thể loại và thời gian không?
-- Cột director, cast còn nhiều giá trị UNKNOWN khó khăn hơn trong việc phân tích chi tiết làm bỏ đi nhiều phim.
-
--> *Cách xử lý:* Bỏ qua các hàng có giá trị UNKNOWN, chọn top nổi bật để phân tích
-Có nhiều ô đa giá trị, khi tách giá trị thành hàng riêng biệt đơn giá trị, làm ảnh hưởng khi đếm đạo diễn cho phim nào sẽ bị trùng lại
-
--> *Cách xử lý:* Kế hợp với title tựa đề phim để gom nhóm tránh bị đếm trùng
+**Benefits**: 
+- Understand Netflix's content expansion strategy.
+- Identify genre preferences and their evolution.
+- Recognize strategic shifts in content development.
 
 ---
-## C. Biên bản họp: <a id="phan-c"></a>
-### 1. Biên bản họp lần 1: <a id="hop-lan-1"></a>
-#### Thông tin các thành viên tham gia họp:
 
-|Họ tên                 |MSSV    |
-|-----------------------|--------|
-|Nguyễn Trần Gia        |22120083|
-|Trần Hoàng Kim Ngân    |22120224|
-|Nguyễn Phát Kim Nhung  |22120259|
+### Question 2: International Content Diversification  
+**Research Focus**: What are the trends in Netflix's international vs domestic content diversification?
 
-#### Thời gian:
-- **Bắt đầu:** 22h ngày 24/11/2024
-- **Kết thúc:** 23h ngày 24/11/2024
-#### Nội dung:
-- **Phân công công việc:** Nhóm trưởng sẽ đọc các yêu cầu được thầy đưa ra và thực hiện chia công việc theo như bảng phân công đã được nêu ở phần trên.
-- **Đặt ra hạn chót cho các công việc:**
+**Key Analysis**:
+- Ratio of international vs domestic (US) content over time.
+- Countries with significant content production growth.
+- Collaborative productions between countries.
 
-|Công việc                     |Người thực hiện      |Hạn chót  |
-|------------------------------|---------------------|----------|
-|Thu thập dữ liệu              |Trần Gia             |1/12/2024 |
-|Khám phá dữ liệu và tiền xử lý|Kim Ngân và Kim Nhung|29/11/2024|
-|Đặt câu hỏi                   |Tất cả               |9/12/2024 |
-|Câu 1                         |Kim Nhung            |9/12/2024 |
-|Câu 2                         |Kim Ngân             |9/12/2024 |
-|Câu 3                         |Trần Gia             |9/12/2024 |
+**Benefits**:
+- Analyze Netflix's global expansion strategy.
+- Identify emerging international content markets.
+- Understand global content distribution patterns.
 
-- **Đặt câu hỏi có ý nghĩa:** Nhóm trưởng sẽ giao việc đặt câu hỏi cho từng thành viên và nêu lên được lợi ích của chúng.
-  - Câu 1. Sự thay đổi về số lượng và thể loại nội dung của Netflix qua các năm là gì?
-  - Câu 2. Xu hướng về sự đa dạng hóa nội dung quốc tế và nội dung nội địa của Netflix là gì?
-  - Câu 3. Netflix có đang thay đổi chiến lược hợp tác với các đạo diễn và diễn viên nổi bật theo thể loại và thời gian không?
-### 2. Biên bản họp lần 2: <a id="hop-lan-2"></a>
-#### Thông tin các thành viên tham gia họp:
+---
 
-|Họ tên                 |MSSV    |
-|-----------------------|--------|
-|Nguyễn Trần Gia        |22120083|
-|Trần Hoàng Kim Ngân    |22120224|
-|Nguyễn Phát Kim Nhung  |22120259|
+### Question 3: Creator Collaboration Strategy
+**Research Focus**: Is Netflix changing its collaboration strategy with prominent directors and cast members by genre and time?
 
-#### Thời gian:
-- **Bắt đầu:** 13h ngày 11/12/2024
-- **Kết thúc:** 15h ngày 11/12/2024
-#### Nội dung:
-- **Kiểm tra các phần đã thực hiện:** Các thành viên trong nhóm cùng xem lại các phần đã thực hiện và xem xét, ghi chú lại các nội dung bị sai sót trong quá trình làm.
+**Key Analysis**:
+- Director and cast appearance frequency by genre over time.
+- Relationship between creators and content genres.
+- Evolution of partnerships with established vs emerging talent.
+
+**Benefits**:
+- Understand Netflix's talent acquisition strategy.
+- Identify preferred creators by genre.
+- Recognize shifts in production partnerships.
+
+## 🛠️ Technologies Used
+
+### Programming Language
+- Python 3.x
+
+### Libraries & Tools
+- **Data Manipulation**: `pandas`, `numpy`.
+- **Data Visualization**: `matplotlib`, `seaborn`.
+- **Development Environment**: Jupyter Notebook.
+
+## 📈 Key Findings
+
+### Content Growth
+- Analysis of Netflix's exponential content growth patterns.
+- Identification of peak content addition periods.
+- Evolution from movie-focused to balanced content strategy.
+
+### International Expansion
+- Significant increase in international content production.
+- Emergence of key content-producing countries beyond the US.
+- Growth in cross-country collaborative productions.
+
+### Genre Trends
+- Evolution of genre preferences over time.
+- Identification of dominant and emerging genres.
+- Strategic genre diversification patterns.
+
+### Creator Partnerships
+- Analysis of long-term vs project-based collaborations.
+- Genre-specific creator preferences.
+- Balance between established and new talent.
+
+## 🚀 Getting Started
+
+### Prerequisites
+```bash
+# Install required packages
+pip install pandas numpy matplotlib seaborn jupyter
+```
+
+### Running the Analysis
+
+1. **Data Collection & Documentation**
+   ```bash
+   jupyter notebook data_collection/data_collection.ipynb
+   ```
+
+2. **Data Exploration & Preprocessing**
+   ```bash
+   jupyter notebook data_exploration/data_exploration.ipynb
+   ```
+
+3. **Research Question Analysis**
+   ```bash
+   # Question 1: Content & Genre Evolution
+   jupyter notebook data_questions/knhung_question1.ipynb
+   
+   # Question 2: International Content Trends
+   jupyter notebook data_questions/kngan_question2.ipynb
+   
+   # Question 3: Creator Collaboration Strategy
+   jupyter notebook data_questions/TGia_question3.ipynb
+   ```
+
+## 📝 Methodology
+
+### 1. Data Collection
+- Dataset acquired from Kaggle platform.
+- Comprehensive documentation of data source and licensing.
+- Verification of data collection methodology.
+
+### 2. Data Exploration & Preprocessing
+- Initial data quality assessment.
+- Handling missing values and duplicates.
+- Data type validation and conversion.
+- Feature engineering for analysis.
+
+### 3. Analysis & Visualization
+- Statistical analysis of trends.
+- Time-series analysis of content evolution.
+- Comparative analysis across categories.
+- Interactive visualizations for insights.
+
+### 4. Interpretation & Insights
+- Pattern identification.
+- Trend analysis.
+
+## 💡 Insights & Applications
+
+### For Content Creators
+- Understanding genre demand trends.
+- Identifying collaboration opportunities.
+- Recognizing international market potentials.
+
+### For Business Analysts
+- Strategic planning insights.
+- Market expansion opportunities.
+- Content investment prioritization.
+
+### For Researchers
+- Entertainment industry trends.
+- Digital content consumption patterns.
+- Global media distribution strategies.
+
+## 📄 License
+
+This project is for educational purposes. The dataset is licensed under CC0: Public Domain.
+
+---
+
+**Note**: This project was completed as part of a data science course focusing on practical data analysis and visualization skills using real-world datasets.
+
+## 🏆 Achievements
+
+- Comprehensive data cleaning and preprocessing pipeline.
+- Multi-dimensional analysis of Netflix content strategy.
+- Professional data visualizations and insights.
+- Collaborative team project with distinct research questions.
+- Reproducible analysis with clear documentation.
+
+---
+
+*Last Updated: December 2025*
